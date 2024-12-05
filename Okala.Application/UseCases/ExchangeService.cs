@@ -8,7 +8,7 @@ public class ExchangeService(IExchangeAggregatorExternalService exchangeExternal
 {
     public async Task<IEnumerable<ExchangeRate>> GetExchangeRateByCode(string baseCurrencyCode)
     {
-        var targetCurrenciesList = new [] { "USD"/*,"EUR","BRL","GBP","AUD"*/ };
+        var targetCurrenciesList = new [] { "USD","EUR","BRL","GBP","AUD" };
         var exchangeRates = await exchangeExternalService.GetRateByCurrencyCode(baseCurrencyCode, targetCurrenciesList);
         return exchangeRates;
     }

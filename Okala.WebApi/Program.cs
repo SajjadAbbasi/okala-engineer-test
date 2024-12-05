@@ -1,10 +1,12 @@
 using Okala.Application.Extensions;
 using Okala.Infrastructure.Extensions;
+using Okala.WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure();
 builder.Services.AddApplication();
+builder.Services.AddWebApi();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
