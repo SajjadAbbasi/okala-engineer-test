@@ -1,0 +1,6 @@
+﻿services:
+  okala.webapi:
+    image: okala.webapi
+    build:
+      context: .
+      dockerfile: Okala.WebApi/Dockerfile
