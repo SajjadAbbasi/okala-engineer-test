@@ -11,6 +11,7 @@ public class ExchangeAggregatorService(IExchangeExternalService exchangeService)
         var tasks= targetCurrenciesCode.Select(code => 
             exchangeService.GetRateByCurrencyCode(baseCurrencyCode, code));
         var exchangeRates =await Task.WhenAll(tasks);
-        return exchangeRates;
+        var exchangeRatesFlatList= exchangeRates.SelectMany(e=>e);
+        return exchangeRatesFlatList;
     }
 }

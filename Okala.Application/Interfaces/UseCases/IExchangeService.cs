@@ -2,7 +2,7 @@
 
 namespace Okala.Application.Interfaces.UseCases;
 
-public interface IExchangeRateService
+public interface IExchangeService
 {
     public Task<IEnumerable<ExchangeRate>> GetExchangeRateByCode(string baseCurrencyCode);
 }

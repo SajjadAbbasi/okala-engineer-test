@@ -16,7 +16,9 @@
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5234",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EXCHANGE_API_URL": "https://pro-api.coinmarketcap.com",
+        "EXCHANGE_API_TOKEN": "480487b0-5ce6-4007-a544-a98f4ea6228d"
       }
     },
     "https": {
@@ -26,7 +28,9 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7103;http://localhost:5234",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EXCHANGE_API_URL": "https://pro-api.coinmarketcap.com",
+        "EXCHANGE_API_TOKEN": "480487b0-5ce6-4007-a544-a98f4ea6228d"
       }
     },
     "IIS Express": {
@@ -34,7 +38,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EXCHANGE_API_URL": "https://pro-api.coinmarketcap.com",
+        "EXCHANGE_API_TOKEN": "480487b0-5ce6-4007-a544-a98f4ea6228d"
       }
     }
   }

@@ -2,7 +2,7 @@
 
 public record ExchangeRate(
     Currency BaseCurrency,
-    Currency ExchangedCurrency,
+    string TargetCurrencyCode,
     decimal Price
     );
 public record Currency(

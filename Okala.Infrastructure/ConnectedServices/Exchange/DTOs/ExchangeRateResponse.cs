@@ -1,23 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Okala.Infrastructure.ConnectedServices.Exchange.DTOs;
 
 public record ExchangeRateResponse(
-    [property: JsonProperty("status")] Status Status,
-    [property: JsonProperty("data")] IDictionary<string, IList<Currency>> Data);
+    [property: JsonPropertyName("status")] Status Status,
+    [property: JsonPropertyName("data")] IDictionary<string, IEnumerable<Currency>> Data);
 
 public record Status(
-    [property: JsonProperty("timestamp")] DateTime Timestamp,
-    [property: JsonProperty("error_code")] int ErrorCode,
-    [property: JsonProperty("error_message")] string? ErrorMessage);
+    [property: JsonPropertyName("timestamp")] DateTime Timestamp,
+    [property: JsonPropertyName("error_code")] int ErrorCode,
+    [property: JsonPropertyName("error_message")] string? ErrorMessage);
 
 public record Currency(
-    [property: JsonProperty("id")] long Id,
-    [property: JsonProperty("name")] string Name,
-    [property: JsonProperty("symbol")] string Code,
-    [property: JsonProperty("slug")] string Slug,
-    [property: JsonProperty("quote")] IDictionary<string, IList<Quote>> Quote);
+    [property: JsonPropertyName("id")] long Id,
+    [property: JsonPropertyName("name")] string Name,
+    [property: JsonPropertyName("symbol")] string Code,
+    [property: JsonPropertyName("slug")] string Slug,
+    [property: JsonPropertyName("quote")] IDictionary<string, Quote> Quote);
 
 public record Quote(
-    [property: JsonProperty("price")] decimal Price,
-    [property: JsonProperty("last_updated")] DateTime LastUpdate);
+    [property: JsonPropertyName("price")] decimal Price,
+    [property: JsonPropertyName("last_updated")] DateTime LastUpdate);
