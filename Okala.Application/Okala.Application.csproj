@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Mappings\" />
+      <ProjectReference Include="..\Okala.Core\Okala.Core.csproj" />
     </ItemGroup>
 
 </Project>

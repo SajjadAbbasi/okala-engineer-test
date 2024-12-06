@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Okala.Application.Interfaces.ConnectedServices;
+using Okala.Application.Interfaces.Persistence;
 using Okala.Infrastructure.ConnectedServices.Exchange;
 using Okala.Infrastructure.Mappings;
+using Okala.Infrastructure.Persistence.Repositories;
 using Okala.Infrastructure.Utils;
 using Polly;
 using Polly.Caching.Memory;
@@ -18,6 +20,8 @@ public static class DependencyRegistrar
         services.ConfigureCoinMarketCapClient();
         services.AddScoped<IExchangeExternalService, CoinMarketCapService>();
         services.AddScoped<IExchangeAggregatorExternalService, ExchangeAggregatorService>();
+        
+        services.AddScoped<IExchangeRepository, ExchangeMockRepository>();
         
         services.AddAutoMapper(typeof(InfrastructureMappingProfile));
         return services;
