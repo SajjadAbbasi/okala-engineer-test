@@ -4,8 +4,8 @@ using Okala.Application.Interfaces.ConnectedServices;
 using Okala.Application.Interfaces.Persistence;
 using Okala.Infrastructure.ConnectedServices.Exchange;
 using Okala.Infrastructure.Mappings;
+using Okala.Infrastructure.Middlewares;
 using Okala.Infrastructure.Persistence.Repositories;
-using Okala.Infrastructure.Utils;
 using Polly;
 using Polly.Caching.Memory;
 using Polly.Extensions.Http;
@@ -17,7 +17,7 @@ public static class DependencyRegistrar
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        services.ConfigureCoinMarketCapClient();
+        services.AddCoinMarketCapClient();
         services.AddScoped<IExchangeExternalService, CoinMarketCapService>();
         services.AddScoped<IExchangeAggregatorExternalService, ExchangeAggregatorService>();
         
@@ -27,7 +27,7 @@ public static class DependencyRegistrar
         return services;
     }
 
-    private static void ConfigureCoinMarketCapClient(this IServiceCollection services)
+    private static void AddCoinMarketCapClient(this IServiceCollection services)
     {
         services.AddMemoryCache();
         var retryPolicy = HttpPolicyExtensions
@@ -54,6 +54,7 @@ public static class DependencyRegistrar
                 c.DefaultRequestHeaders.Add("X-CMC_PRO_API_KEY", apiToken);
             }).ConfigurePrimaryHttpMessageHandler<HttpSSL2Handler>()
             .AddHttpMessageHandler<HttpCacheMiddleware>()
+            .AddHttpMessageHandler<HttpExceptionHandler>()
             .AddPolicyHandler(retryPolicy);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Security.Authentication;
 
-namespace Okala.Infrastructure.Utils;
+namespace Okala.Infrastructure.Middlewares;
 
 public class HttpSSL2Handler :HttpClientHandler
 {
