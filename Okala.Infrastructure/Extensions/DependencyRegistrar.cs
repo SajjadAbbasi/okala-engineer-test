@@ -20,8 +20,8 @@ public static class DependencyRegistrar
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
         services.AddCoinMarketCapClient();
-        services.AddScoped<IExchangeExternalService, CoinMarketCapService>();
-        services.AddScoped<IExchangeAggregatorExternalService, ExchangeAggregatorService>();
+        services.AddScoped<IExchangeClient, CoinMarketCapService>();
+        services.AddScoped<IExchangeAggregatorClient, ExchangeAggregatorService>();
         
         services.AddScoped<IExchangeRepository, ExchangeMockRepository>();
         

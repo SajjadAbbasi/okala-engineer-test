@@ -4,7 +4,7 @@ using Okala.Application.Interfaces.ConnectedServices;
 
 namespace Okala.Infrastructure.ConnectedServices.Exchange;
 
-public class CoinMarketCapService(ICoinMarketCapClient apiClient,IMapper mapper) : IExchangeExternalService
+public class CoinMarketCapService(ICoinMarketCapClient apiClient,IMapper mapper) : IExchangeClient
 {
     public async Task<IEnumerable<ExchangeRate>> GetRateByCurrencyCode(string baseCurrencyCode, string targetCurrencyCode)
     {

@@ -3,8 +3,8 @@ using Okala.Application.Interfaces.ConnectedServices;
 
 namespace Okala.Infrastructure.ConnectedServices.Exchange;
 
-public class ExchangeAggregatorService(IExchangeExternalService exchangeService)
-    : IExchangeAggregatorExternalService
+public class ExchangeAggregatorService(IExchangeClient exchangeService)
+    : IExchangeAggregatorClient
 {
     public async Task<IEnumerable<ExchangeRate>> GetRateByCurrencyCode(string baseCurrencyCode, string[] targetCurrenciesCode)
     {
