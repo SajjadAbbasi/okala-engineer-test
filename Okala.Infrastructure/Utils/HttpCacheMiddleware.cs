@@ -1,5 +1,4 @@
-﻿using Okala.Application.Interfaces.Cache;
-using Polly;
+﻿using Polly;
 
 namespace Okala.Infrastructure.Utils;
 
