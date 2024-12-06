@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Okala.Application.DTOs.Configuration;
 using Okala.Application.Interfaces.ConnectedServices;
 using Okala.Application.Interfaces.Persistence;
 using Okala.Infrastructure.ConnectedServices.Exchange;
@@ -43,15 +45,15 @@ public static class DependencyRegistrar
             return new HttpCacheMiddleware(cachePolicy);
         });
         services.AddTransient<HttpSSL2Handler>();
+        services.AddTransient<HttpExceptionHandler>();
+
         services.AddRefitClient<ICoinMarketCapClient>()
             .ConfigureHttpClient(c =>
             {
-                var apiUrl = Environment.GetEnvironmentVariable("EXCHANGE_API_URL") ??
-                             throw new NullReferenceException();
-                var apiToken = Environment.GetEnvironmentVariable("EXCHANGE_API_TOKEN") ??
-                               throw new NullReferenceException();
-                c.BaseAddress = new Uri(apiUrl);
-                c.DefaultRequestHeaders.Add("X-CMC_PRO_API_KEY", apiToken);
+                using var scope = services.BuildServiceProvider().CreateScope();
+                var config= scope.ServiceProvider.GetRequiredService<IOptions<ExchangeServiceConfig>>();
+                c.BaseAddress = new Uri(config.Value.BaseUrl);
+                c.DefaultRequestHeaders.Add("X-CMC_PRO_API_KEY", config.Value.ApiToken);
             }).ConfigurePrimaryHttpMessageHandler<HttpSSL2Handler>()
             .AddHttpMessageHandler<HttpCacheMiddleware>()
             .AddHttpMessageHandler<HttpExceptionHandler>()
