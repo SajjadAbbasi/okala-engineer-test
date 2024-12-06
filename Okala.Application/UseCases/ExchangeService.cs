@@ -9,7 +9,7 @@ public class ExchangeService(
     IExchangeRepository exchangeRepository,
     IExchangeAggregatorClient exchangeClient) : IExchangeService
 {
-    public async Task<IEnumerable<ExchangeRate>> GetExchangeRateByCode(string baseCurrencyCode)
+    public async Task<IList<ExchangeRate>> GetExchangeRateByCode(string baseCurrencyCode)
     {
         var fiatCurrencyList = exchangeRepository.GetFiatCurrencyList().Select(c => c.Code).ToArray();
         var exchangeRates = await exchangeClient.GetRateByCurrencyCode(baseCurrencyCode, fiatCurrencyList);

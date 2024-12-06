@@ -4,5 +4,5 @@ namespace Okala.Application.Interfaces.UseCases;
 
 public interface IExchangeService
 {
-    public Task<IEnumerable<ExchangeRate>> GetExchangeRateByCode(string baseCurrencyCode);
+    public Task<IList<ExchangeRate>> GetExchangeRateByCode(string baseCurrencyCode);
 }
